@@ -70,7 +70,7 @@ def object_detection(img):
 
 #Text detection 함수
 def text_detection(img):
-    dst = 'C:/Users/JSS/PycharmProjects/Relumin/darkflow/net/result.png'
+    dst = 'C:/Users/JSS/Documents/2018Team/Code/MainServer/Relumin/darkflow/net/result.png'
 
     # Gray Scale
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -150,8 +150,8 @@ def main():
     2. Emotion 하이퍼 파라미터 및 모델 설정
     '''
     options = {
-        'model': 'C:/Users/JSS/PycharmProjects/Relumin/cfg/yolo.cfg',
-        'load': 'C:/Users/JSS/PycharmProjects/Relumin/bin/yolov2.weights',
+        'model': 'C:/Users/JSS/Documents/2018Team/Code/MainServer/Relumin/cfg/yolo.cfg',
+        'load': 'C:/Users/JSS/Documents/2018Team/Code/MainServer/Relumin/bin/yolov2.weights',
         'threshold': 0.3,
         'gpu': 1.0
     }
@@ -212,7 +212,7 @@ def main():
             decimg = cv2.imdecode(data, 1)
             cv2.imwrite('test.jpg', decimg)
 
-            img = cv2.imread('C:/Users/JSS/PycharmProjects/Relumin/darkflow/net/test.jpg') #전송받은 이미지
+            img = cv2.imread('C:/Users/JSS/Documents/2018Team/Code/MainServer/Relumin/darkflow/net/test.jpg') #전송받은 이미지
 
             if inputNumber == '1':
                 object_detection(img)
