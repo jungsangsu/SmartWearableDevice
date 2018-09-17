@@ -12,17 +12,20 @@ import urllib
 import urllib.request
 
 # TTS API INFO
-client_id = "mu69nuz21c"
-client_secret = "pZHIA8b9JzKc6l300Oa3nv91N3VkFKq6ctFOd6bX"
+client_id = "Your ID"
+client_secret = "Your secret Key"
 TCP_IP = '220.67.124.124'
-# TCP_IP ='127.0.0.1'
+
 TCP_PORT = 30001
 sock = socket.socket()
 sock.connect((TCP_IP, TCP_PORT))
 print('TCP Connection Complete')
 
+#Text to Speech
 def TTS(inputString):
     encText = urllib.parse.quote(inputString)
+    
+    #speaker , speed setting
     data = "speaker=matt&speed=0&text=" + encText
     url = "https://naveropenapi.apigw.ntruss.com/voice/v1/tts"
     request = urllib.request.Request(url)
@@ -44,30 +47,39 @@ def TTS(inputString):
 def main(choice):
     menu = choice
     capture = cv2.VideoCapture(0)
+    
     ret, frame = capture.read()
     sock.send(str(menu).encode('utf-8'))
+    
     response = (sock.recv(1024)).decode('utf-8')
     print('{}'.format(response))
     encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 90]
     result, imgencode = cv2.imencode('.jpg', frame, encode_param)
     data = numpy.array(imgencode)
+    
     stringData = data.tostring()
     x = str(len(stringData))
     sock.send((x.ljust(16)).encode())
     sock.send(stringData)
     textresult = (sock.recv(1024)).decode('utf-8')
     print('{}'.format(textresult))
+    
     capture.release()
+    
     TTS(textresult)
-
+    
+    
+#Object recognition
 @buttonshim.on_press(buttonshim.BUTTON_A)
 def button_a(button, pressed):
     main(1)
 
+#Text recognition
 @buttonshim.on_press(buttonshim.BUTTON_B)
 def button_b(button, pressed):
     main(2)
 
+#Emotion recognition
 @buttonshim.on_press(buttonshim.BUTTON_C)
 def button_c(button, pressed):
     main(3)
