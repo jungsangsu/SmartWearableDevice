@@ -1,4 +1,4 @@
-<img src="glasses.png" height="75">
+<img src="C:/Users/LGPC/Documents/2018Team/Img/glasses.png" height="75">
 
 # **프로젝트 소개**
 
@@ -7,7 +7,7 @@
    * 부정적 시선의 불편함을 느끼는 시각장애인들을 위해 앞에 있는 사람의 감정을 인식하여 음성으로 알려줌으로써 눈이 보이지 않는 단점을 보완합니다.
 
 #### 시스템 구성도
-<img src="시스템 구성도.png" height="75">
+<img src="C:/Users/LGPC/Documents/2018Team/Img/시스템 구성도.png" height="75">
 
 #### **작품 기능**
   *  객체(사물) 인식 : 이미지 및 동영상 촬영을 통한 검출 된 사물에 대한 정보 제공
