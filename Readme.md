@@ -1,4 +1,4 @@
-<img src="C:/Users/LGPC/Documents/2018Team/Img/glasses.png" height="75">
+<img src="./Img/glasses.png" height="75">
 
 # **프로젝트 소개**
 
