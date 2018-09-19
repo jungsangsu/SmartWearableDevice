@@ -19,8 +19,8 @@ from darkflow.net.utils.preprocessor import preprocess_input
 
 #naver API
 def trans(inputString):
-    client_id = "ZMnQeD_xU3diiFWqj9JC"
-    client_secret = "QmkCyJRawH"
+    client_id = "Your Client id"
+    client_secret = "Your Client Secret Key"
     resultAPIString =''
     encText = urllib.parse.quote(inputString)
     data = "source=en&target=ko&text=" + encText
@@ -60,7 +60,7 @@ def object_detection(img):
 
     if len(tempList) != 0:
         resultString = ''.join(tempList)
-        # resultString = trans(resultString)
+        # resultString = trans(resultString) #한글로 결과를 전송하여 듣고싶은경우 사용
         conn.send(resultString.encode('utf-8'))
     else:
         resultString = 'Please try again, there is no object in front or a recognition error.'
@@ -95,7 +95,7 @@ def text_detection(img):
         text = 'Please try again, there is no text in front or a recognition error.'
         conn.send(text.encode('utf-8'))
     else:
-        # text = trans(text)
+        # text = trans(text) #한글로 결과를 전송하여 듣고싶은경우 사용
         conn.send(text.encode('utf-8'))
 
     print("보낸 문자 :" + text)
@@ -137,7 +137,7 @@ def emotion_detection(img):
         emotion_text = 'Please try again, Emotion recognition error.'
         conn.send(emotion_text.encode('utf-8'))
     else:
-        # text = trans(text)
+        # text = trans(text) #한글로 결과를 전송하여 듣고싶은경우 사용
         conn.send(emotion_text.encode('utf-8'))
 
     print("보낸 문자 :" + emotion_text)
