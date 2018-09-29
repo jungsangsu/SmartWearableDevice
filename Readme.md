@@ -116,26 +116,55 @@ sudo apt-get install Bluetooth bluez blueman pulseaudio
 - 사운드 채널을 맞춰주기 위해서는 설치하였던 다음과 같은 pulseaudio 명령어들을 사용합니다.
 	1. 밑 명령어를 이용하여 어떤 장치가 잡혀있는지 알 수 있습니다.
 	```
-pacmd list-sink
+	pacmd list-sink
 	```
 
 2. 블루투스 이어폰이 연결이 되면(*) index 0 이외에도 index 1의 장치가 있는것을 볼 수 있습니다.(무조건적으로 index1이 아니라 name: <bluez_sink.MAC주소>를 가진 장치가 잡힙니다.)
 3. 앞의 *는 활성화를 의미합니다. 블루투스 이어폰을 활성화하기 위해서 다음 명령어를 입력합니다.
 
 	```
-pacmd set-default-sink[index or name]
+	pacmd set-default-sink[index or name]
 	```
- 위의 과정들을 거치면 블루투스 이어폰으로의 사운드 송출은 가능한 상태이지만 프로파일이 headset 모드로 적용되어 음질이 상당히 떨어진다. 따라서 고음질을 제공하는 A2DP 모드로 변경시켜주어야 합니다.
+ 위의 과정들을 거치면 블루투스 이어폰으로의 사운드 송출은 가능한 상태이지만 프로파일이 headset 모드로 적용되어 음질이 상당히 떨어집니다. 따라서 고음질을 제공하는 A2DP 모드로 변경시켜주어야 합니다.
 * Headset mode는 양방향이지만 저음질을 지원하고 A2DP mode는 단방향이지만 고음질을 지원합니다.
 * A2DP 프로파일 변경 후 .mp3파일을 재생하기 위하여 설치하였던 mplayer를 이용하여 파일을 재생합니다.
 	```
-pacmd set-card-profile bluez_card.[MAC주소] a2dp_sink
-mplayer -ao [파일명]
+	pacmd set-card-profile bluez_card.[MAC주소] a2dp_sink
+	mplayer -ao [파일명]
 	```
 
+##### 라즈베리파이와 카메라 연동 방법
+* 라즈베리파이 내에서 파이썬 코드와 연동하여 카메라를 사용하기 위해서는 OpenCV3 라이브러리 설치가 필요합니다. 
+* OpenCV3 컴파일 전 필요한 패키지들이 필요합니다. 다음과 같은 명령어들로 필요 패키지들을 설치합니다.
+	```
+	sudo apt-get install build-essential cmake pkg-config
+	sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
+	sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libxvidcore-dev libx264-dev libxine2-dev
+	sudo apt-get install libv4l-dev v4l-utils
+	sudo apt-get install python2.7-dev python3-dev python-numpy python3-numpy
+	```
 
+#### OpenCV3 라이브러리 설치 방법
+* 필요 패키지들을 다 설치하였다면 OpenCV 설정과 컴파일 및 설치를 해줍니다.
+* 설치할 디렉토리를 만들어 준 후 다음 명령어로 opencv 라이브러리를 설치 후 압축을 풀어줍니다.
+	```
+	wget -0 opencv.zip http://github.com/opencv/opencv/archive/3.4.3.zip
+	wget -0 opencv_contrib.zip http://github.com/opencv/opencv/archive/3.4.3.zip
+	unzip opencv.zip
+	unzip opencv_contrib.zip
+	```
+* 압축을 풀어준 opencv-3.4.3 디렉토리로 이동 후 build 디렉토리 생성하여 cmake를 이용하여 컴파일 설정을 해줍니다.
+* cmake를 사용하여 OpenCV 컴파일 설정은 다음과 같습니다.
+<img src="./Img/시스템 구성도.png">
 
-
+#### OpenCV3 설치 결과 확인
+* python3.x 에서 opencv 라이브러리를 사용 가능한지는 파이썬3 실행 후 다음과 같이 확인합니다.
+	```
+	>>>import cv2
+	>>>cv2.__version__
+	'3.4.0'
+	>>>
+	```
 
 ### 윈도우(Windows)
   윈도우 운영체제는 window 10 Pro 버전을 사용합니다.
@@ -371,11 +400,19 @@ Naver Clova CSS API는 Text to Speech 기능을 하기위해 사용합니다.
 사용자는 상황에 따라 원하는 기능을 선택할 수 있어야하는데, 그 제어를 버튼으로 합니다.
   * 참고 [사이트](https://github.com/pimoroni/button-shim)
   * 실행 예시
+	
 	```
-curl https://get.pimoroni.com/buttonshim | bash
-sudo apt-get install pimoroni
-sudo apt-get install python3-buttonshim
-sudo pip3 install buttonshim
+	curl https://get.pimoroni.com/buttonshim | bash
+	sudo apt-get install pimoroni
+	sudo apt-get install python3-buttonshim
+	sudo pip3 install buttonshim
 	```
 
+### 라이센스
+		     GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+	 Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+	 Everyone is permitted to copy and distribute verbatim copies
+	 of this license document, but changing it is not allowed.
 
