@@ -155,7 +155,7 @@ sudo apt-get install Bluetooth bluez blueman pulseaudio
 	```
 * 압축을 풀어준 opencv-3.4.3 디렉토리로 이동 후 build 디렉토리 생성하여 cmake를 이용하여 컴파일 설정을 해줍니다.
 * cmake를 사용하여 OpenCV 컴파일 설정은 다음과 같습니다.
-<img src="./Img/시스템 구성도.png">
+<img src="./Img/cmake컴파일설정.PNG">
 
 #### OpenCV3 설치 결과 확인
 * python3.x 에서 opencv 라이브러리를 사용 가능한지는 파이썬3 실행 후 다음과 같이 확인합니다.
