@@ -60,7 +60,7 @@
     해당 진행 완료후 재부팅 합니다.
 * 재부팅 하여 와이파이 연결 후 필수 패키지 업데이트를 위해 터미널에서 다음 명령어를 실행합니다. 
     ```
-      sudo apt-get update && sudo apt-get upgrade
+    sudo apt-get update && sudo apt-get upgrade
     ```
 
 ##### **사용방법**
@@ -72,8 +72,8 @@
   * 터미널 실행 후 실행파일이 있는 경로로 이동 후 실행파일을 아래와 같이 실행하시면 됩니다.
 
 	```
-sudo ./TestClient
-sudo ./TestClient_Encrypt
+	sudo ./TestClient
+	sudo ./TestClient_Encrypt
 	```
 
 
@@ -209,7 +209,7 @@ sudo apt-get install Bluetooth bluez blueman pulseaudio
        python3 setup.py build_ext --inplace
 	```
    * 필요 패키지 설치
-```
+	```
         conda install -c conda-forge/label/broken opencv 
         pip install opencv-python
         pytesseract :  conda install -c jim-hart pytesseract
@@ -218,17 +218,17 @@ sudo apt-get install Bluetooth bluez blueman pulseaudio
         conda install -c anaconda scipy
         conda install -c conda-forge matplotlib
         conda install -c conda-forge keras
-```
+	```
   ##### 실행 방법
   * 사물인식 데모 version 
     * CPU Version
 	```
-flow --model cfg/yolo-new.cfg --load bin/yolo-new.weights --demo videofile.avi
+	flow --model cfg/yolo-new.cfg --load bin/yolo-new.weights --demo videofile.avi
 	```
 
    * GPU Version
 	```
-flow --model cfg/yolo-new.cfg --load bin/yolo-new.weights --demo videofile.avi --gpu 1.0
+	flow --model cfg/yolo-new.cfg --load bin/yolo-new.weights --demo videofile.avi --gpu 1.0
 	```
 >웹캠 / 카메라를 사용하려면 videofile.avi 키워드를 camera로 바꾸기만 하면됩니다.
 
