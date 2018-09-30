@@ -245,6 +245,7 @@
     * Code/MainServer/Relumin/darkflow/net/Server.py 파일을 이용합니다.
         return_predict(img)에 numpy.ndarray 형식의 이미지를 미리로드하고 실행합니다 이미지 파일을 제대로 전달하지 않으면 동작하지 않습니다.  
 ##### 실행 예시
+* code
 	```
 	options = {"model": "cfg/yolo.cfg", "load": "bin/yolo.weights", "threshold": 0.1}
 	tfnet = TFNet(options)
@@ -287,6 +288,7 @@ Tesseract OCR 설치파일을 [다운로드](https://digi.bib.uni-mannheim.de/te
 	```
 
 ##### 실행 예시
+* code
 	```
 	import pytesseract
 	from PIL import Image
@@ -314,6 +316,7 @@ Tesseract OCR 설치파일을 [다운로드](https://digi.bib.uni-mannheim.de/te
     * Code/MainServer/Relumin/darkflow/net/Server.py 파일을 이용합니다.
      emotion_detection 함수안에 numpy.ndarray 형식의 이미지를 미리로드하고 실행합니다 이미지 파일을 제대로 전달하지 않으면 동작하지 않습니다. 반환값으로는 보낸문자를 출력하며, Client에게 정보를 전송한다. 
 ##### 실행 예시
+* code
 	```
 	def emotion_detection(img):
  	emotion_text = None
@@ -368,6 +371,7 @@ Naver Clova CSS API는 Text to Speech 기능을 하기위해 사용합니다.
 * CSS API 신청을 하게 되면 Client ID와 Client Secret ID를 받게 됩니다.
 
 ##### 실행 예시
+* code
 	```
 	import os
 		import sys
@@ -405,7 +409,6 @@ Naver Clova CSS API는 Text to Speech 기능을 하기위해 사용합니다.
 사용자는 상황에 따라 원하는 기능을 선택할 수 있어야하는데, 그 제어를 버튼으로 합니다.
   * 참고 [사이트](https://github.com/pimoroni/button-shim)
   * 실행 예시
-	
 	```
 	curl https://get.pimoroni.com/buttonshim | bash
 	sudo apt-get install pimoroni
