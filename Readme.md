@@ -256,16 +256,16 @@
     		resultString = ''
     		tempList = []
     		for i in range(len(result)):
-        		tempList.append(result[i]['label'] + '. ')
+        	          tempList.append(result[i]['label'] + '. ')
     		tempList = list(set(tempList))
 
     		if len(tempList) != 0:
-        		resultString = ''.join(tempList)
-        		# resultString = trans(resultString) #한글로 결과를 전송하여 듣고싶은경우 사용
-        		conn.send(resultString.encode('utf-8'))
+        	          resultString = ''.join(tempList)
+        	          # resultString = trans(resultString) #한글로 결과를 전송하여 듣고싶은경우 사용
+        	          conn.send(resultString.encode('utf-8'))
     		else:
-        		resultString = 'Please try again, there is no object in front or a recognition error.'
-        		conn.send(resultString.encode('utf-8'))
+        	          resultString = 'Please try again, there is no object in front or a recognition error.'
+        	          conn.send(resultString.encode('utf-8'))
     
     		print("보낸 문자 :" + resultString)
 	```
@@ -350,11 +350,11 @@ Tesseract OCR 설치파일을 [다운로드](https://digi.bib.uni-mannheim.de/te
         	except:
             		continue
     	if emotion_text == None:
-        	emotion_text = 'Please try again, Emotion recognition error.'
-        	conn.send(emotion_text.encode('utf-8'))
+        	     emotion_text = 'Please try again, Emotion recognition error.'
+        	     conn.send(emotion_text.encode('utf-8'))
     	else:
-        	# text = trans(text) #한글로 결과를 전송하여 듣고싶은경우 사용
-        	conn.send(emotion_text.encode('utf-8'))
+	            # text = trans(text) #한글로 결과를 전송하여 듣고싶은경우 사용
+        	     conn.send(emotion_text.encode('utf-8'))
     
     	print("보낸 문자 :" + emotion_text)
 	```
@@ -390,9 +390,9 @@ Naver Clova CSS API는 Text to Speech 기능을 하기위해 사용합니다.
    			print("TTS mp3 저장")
 	     		response_body = response.read()
 	     		with open('1111.mp3', 'wb') as f:
-	        		 f.write(response_body)
+	        		f.write(response_body)
 	 	else:
-   		 print("Error Code:" + rescode)
+			print("Error Code:" + rescode)
 	```
   * client_id 는 제공받은 Client ID를 기입하고 client_secret 은 제공받은 Client Screte ID를 기입하여야합니다.
    위의 예시를 이용하여 TTS(Text To Speech)기능의 결과물인 ‘1111.mp3’가 생성됨을 알 수 있습니다.
