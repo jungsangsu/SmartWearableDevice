@@ -54,19 +54,22 @@
 	sudo raspi-config
 	```
    * Localisation Options으로 들어가서 다음 과정을 진행 합니다.
-    T1 Change Locale은 언어 세팅 입니다. 다음의 언어팩을 찾아 추가 해주시기 바랍니다.
+   * T1 Change Locale은 언어 세팅 입니다. 다음의 언어팩을 찾아 추가 해주시기 바랍니다.
       ```
       en_US.UTF-8  
       ko_KR.UTF-8
       ```
-    T2 Change Timezone은 시간 설정입니다. Asia-Seoul로 맟춰 줍니다.(외국의 경우 거주하는 국가에 맟춰 설정하시면 됩니다.)
-       T3 Change Keyboard Layout은 키보드 설정입니다. 기본적인 특수문자 입력을 위해 설정합니다. Generic 105-key (Intl) PC 내에서 Korean-Korean(101/104key compatible)을 추천합니다. (외국의 경우 국가의 키보드 세팅에 맟춰 설정하시면 됩니다.)
-       T4 Chage Wi-Fi Country는 와이파이 설정입니다. KR설정시 와이파이 ARP를 찾지 못하는 현상이 있습니다. US로 설정하시어 무선랜을 사용하시는것을 추천합니다. 
-    해당 진행 완료후 재부팅 합니다.
-* 재부팅 하여 와이파이 연결 후 필수 패키지 업데이트를 위해 터미널에서 다음 명령어를 실행합니다. 
-    ```
-    sudo apt-get update && sudo apt-get upgrade
-    ```
+	
+   * T2 Change Timezone은 시간 설정입니다. Asia-Seoul로 맟춰 줍니다.(외국의 경우 거주하는 국가에 맟춰 설정하시면 됩니다.)
+   * T3 Change Keyboard Layout은 키보드 설정입니다. 기본적인 특수문자 입력을 위해 설정합니다. 
+   * Generic 105-key (Intl) PC 내에서 Korean-Korean(101/104key compatible)을 추천합니다. (외국의 경우 국가의 키보드 세팅에 맟춰 설정하시면 됩니다.)
+   * T4 Chage Wi-Fi Country는 와이파이 설정입니다. KR설정시 와이파이 ARP를 찾지 못하는 현상이 있습니다. US로 설정하시어 무선랜을 사용하시는것을 추천합니다. 
+   * 해당 진행 완료후 재부팅 합니다.
+      * 재부팅 하여 와이파이 연결 후 필수 패키지 업데이트를 위해 터미널에서 다음 명령어를 실행합니다. 
+      		
+      ```
+      sudo apt-get update && sudo apt-get upgrade
+      ```
 
 ##### **사용방법**
 설치/실행환경이 구성이 완료되면 플랫폼을 사용하실 수 있습니다.
@@ -256,16 +259,16 @@
     		resultString = ''
     		tempList = []
     		for i in range(len(result)):
-        	          tempList.append(result[i]['label'] + '. ')
+        	             	     tempList.append(result[i]['label'] + '. ')
     		tempList = list(set(tempList))
 
     		if len(tempList) != 0:
-        	          resultString = ''.join(tempList)
-        	          # resultString = trans(resultString) #한글로 결과를 전송하여 듣고싶은경우 사용
-        	          conn.send(resultString.encode('utf-8'))
+        	             	     resultString = ''.join(tempList)
+        	             	     # resultString = trans(resultString) #한글로 결과를 전송하여 듣고싶은경우 사용
+        	             	     conn.send(resultString.encode('utf-8'))
     		else:
-        	          resultString = 'Please try again, there is no object in front or a recognition error.'
-        	          conn.send(resultString.encode('utf-8'))
+        	             	     resultString = 'Please try again, there is no object in front or a recognition error.'
+        	             	     conn.send(resultString.encode('utf-8'))
     
     		print("보낸 문자 :" + resultString)
 	```
@@ -330,9 +333,9 @@ Tesseract OCR 설치파일을 [다운로드](https://digi.bib.uni-mannheim.de/te
         	x1, x2, y1, y2 = apply_offsets(face_coordinates, emotion_offsets)
         	gray_face = gray_image[y1:y2, x1:x2]
         	try:
-            		gray_face = cv2.resize(gray_face, (emotion_target_size))
+        	     gray_face = cv2.resize(gray_face, (emotion_target_size))
         	except:
-            		continue
+        	     continue
     
         	gray_face = preprocess_input(gray_face, True)
         	gray_face = np.expand_dims(gray_face, 0)
@@ -344,11 +347,11 @@ Tesseract OCR 설치파일을 [다운로드](https://digi.bib.uni-mannheim.de/te
         	emotion_window.append(emotion_text)
     
         	if len(emotion_window) > frame_window:
-            		emotion_window.pop(0)
+        	     emotion_window.pop(0)
         	try:
-            		emotion_mode = mode(emotion_window)
+        	     emotion_mode = mode(emotion_window)
         	except:
-            		continue
+        	     continue
     	if emotion_text == None:
         	     emotion_text = 'Please try again, Emotion recognition error.'
         	     conn.send(emotion_text.encode('utf-8'))
