@@ -1,5 +1,3 @@
-<img src="./Img/glasses.png">
-
 # **프로젝트 소개**
 
    * 시각장애인에게 **딥 러닝(Deep Learing)**기반의 웨어러블 기기를 제공함으로써 앞의 사물이 무엇인지 알려줍니다.
@@ -21,9 +19,16 @@
 
 # Viewtiful Eyes 시작하기
 
-* #### [설치 방법 및 실행 환경](#설치 방법 및 실행 환경)
-* #### [서버운용](#서버 운용)
-* #### [사용방법](#사용 방법)
+* #### [설치 방법 및 실행 환경](#설치-방법-및-실행-환경)
+	* [라즈베리파이](#라즈베리파이)
+	* [블루투스](#블루투스)
+	* [윈도우](#윈도우)
+	* [API](#API)
+	
+* #### [사용방법](#사용-방법)
+	* [버튼조작](#버튼-조작)
+	
+* #### [라이센스](#라이센스)
 
 
 
@@ -45,9 +50,9 @@
 #### 라즈베리파이 초기 설정
 * 라즈베리파이3 기준의 초기 설정입니다.
 * 라즈비안 부팅후 터미널을 실행 하여 다음 명령어를 입력합니다. 
-   ```  
-   sudo raspi-config
-   ```
+	```  
+	sudo raspi-config
+	```
    * Localisation Options으로 들어가서 다음 과정을 진행 합니다.
     T1 Change Locale은 언어 세팅 입니다. 다음의 언어팩을 찾아 추가 해주시기 바랍니다.
       ```
@@ -80,7 +85,7 @@
 
 
 
-#### 블루투스(Bluetooth)
+#### 블루투스
    라즈베리파이3 모델은 기본적으로 Bluetooth를 제공하기 때문에 따로 패키지를 설치 안해주어도 무방합니다.
 
 ##### 사운드 시스템 설치
@@ -88,22 +93,23 @@
 * 블루투스 이어폰으로 사운드를 송출하기 위해서는 기본적으로 제공되는 ALSA 사운드 시스템 외에 Bluetooth를 지원하는 pulseaudio 사운드 시스템 설치가 필요합니다.
 
 	```
-sudo apt-get install Bluetooth bluez blueman pulseaudio
+	sudo apt-get install Bluetooth bluez blueman pulseaudio
 	```
 
 * 설치가 완료되면 HDMI/Analog/Bluetooth를 제공하는 pulseaudio 사운드 시스템을 사용이 가능합니다.
 * ALSA와 pulseaudio의 자세한 비교는 다음 [링크](http://guzene.tistory.com/186)로 확인이 가능합니다.
 
 ##### 실행 및 종료 방법
-  ```
-  pulseaudio –start / sudo killall pulseaudio
-  ```
+* 실행 종료 코드
+	```
+	pulseaudio –start / sudo killall pulseaudio
+	```
 ##### 라즈베리파이와 블루투스 연동 방법
 * 라즈베리파이에서 블루투스로 소리를 출력하기 위해서는 Bluetooth를 지원하는 사운드 시스템 뿐만 아니라 블루투스 사운드를 재생 할 mplayer가 필요합니다.
 * 라즈베리파이에서 기본 제공되는 omxplayer는 블루투스 사운드를 재생 할 수 없습니다.
-  ```
-  sudo apt-get install mplayer
-  ```
+	```
+	sudo apt-get install mplayer
+	```
   
 * 블루투스 이어폰을 연결하기 위해 다음 과정을 수행합니다.
 	1. 터미널 내 bluetoothctl 쳐서 블루투스 모드로 진입합니다.
@@ -115,6 +121,7 @@ sudo apt-get install Bluetooth bluez blueman pulseaudio
 - 지금까지의 과정을 거치면 블루투스 이어폰으로도 사운드 출력이 가능한 상태가 되었습니다. 하지만 사운드 채널또한 맞춰주어야만 블루투스 이어폰으로 사운드 송출이 가능합니다. 
 - 사운드 채널을 맞춰주기 위해서는 설치하였던 다음과 같은 pulseaudio 명령어들을 사용합니다.
 	1. 밑 명령어를 이용하여 어떤 장치가 잡혀있는지 알 수 있습니다.
+	
 	```
 	pacmd list-sink
 	```
@@ -166,7 +173,7 @@ sudo apt-get install Bluetooth bluez blueman pulseaudio
 	>>>
 	```
 
-### 윈도우(Windows)
+### 윈도우
   윈도우 운영체제는 window 10 Pro 버전을 사용합니다.
 
 #### Anaconda (python3.5.4) 
@@ -203,30 +210,32 @@ sudo apt-get install Bluetooth bluez blueman pulseaudio
   사물 인식기능을 구현을 위해 YOLO(in darknet)에서 문서 및 weight 파일을 가지고 기능을 구현했습니다.
   YOLO 버전 2 문서를 가지고 구현하였으며, weight 파일은 yolo을 사용하였습니다
   ##### 설치 방법
-   * Cython 확장 기능을 구현합니다 (디렉토리 darkflow.net에 있는 flow.py의 있는 디렉토리에서 실행합니다)
-
+  * Cython 확장 기능을 구현합니다 (디렉토리 darkflow.net에 있는 flow.py의 있는 디렉토리에서 실행합니다)
 	```
-       python3 setup.py build_ext --inplace
+	python3 setup.py build_ext --inplace
 	```
-   * 필요 패키지 설치
+  * 필요 패키지 설치
+   	```
+	conda install -c conda-forge/label/broken opencv
+	pip install opencv-python
+	pytesseract :  conda install -c jim-hart pytesseract
+	conda install -c anaconda tensorflow-gpu
+	pip install --ignore-installed --upgrade tensorflow-gpu
+	conda install -c anaconda scipy
+	conda install -c conda-forge matplotlib
+	conda install -c conda-forge keras
 	```
-        conda install -c conda-forge/label/broken opencv 
-        pip install opencv-python
-        pytesseract :  conda install -c jim-hart pytesseract
-        conda install -c anaconda tensorflow-gpu 
-        pip install --ignore-installed --upgrade tensorflow-gpu
-        conda install -c anaconda scipy
-        conda install -c conda-forge matplotlib
-        conda install -c conda-forge keras
-	```
+	
   ##### 실행 방법
   * 사물인식 데모 version 
     * CPU Version
+    
 	```
 	flow --model cfg/yolo-new.cfg --load bin/yolo-new.weights --demo videofile.avi
 	```
 
-   * GPU Version
+    * GPU Version
+   
 	```
 	flow --model cfg/yolo-new.cfg --load bin/yolo-new.weights --demo videofile.avi --gpu 1.0
 	```
@@ -236,57 +245,59 @@ sudo apt-get install Bluetooth bluez blueman pulseaudio
     * Code/MainServer/Relumin/darkflow/net/Server.py 파일을 이용합니다.
         return_predict(img)에 numpy.ndarray 형식의 이미지를 미리로드하고 실행합니다 이미지 파일을 제대로 전달하지 않으면 동작하지 않습니다.  
 ##### 실행 예시
-```
-options = {"model": "cfg/yolo.cfg", "load": "bin/yolo.weights", "threshold": 0.1}
-tfnet = TFNet(options)
-img = cv2.imread("./sample_img/sample_dog.jpg")
+	```
+	options = {"model": "cfg/yolo.cfg", "load": "bin/yolo.weights", "threshold": 0.1}
+	tfnet = TFNet(options)
+	img = cv2.imread("./sample_img/sample_dog.jpg")
 
-def object_detection(img):
-    result = tfnet.return_predict(img) #YOLO 기능으로 판별된 객체 반환
-    resultString = ''
-    tempList = []
-    for i in range(len(result)):
-        tempList.append(result[i]['label'] + '. ')
-    tempList = list(set(tempList))
+	def object_detection(img):	
+    		result = tfnet.return_predict(img) #YOLO 기능으로 판별된 객체 반환
+    		resultString = ''
+    		tempList = []
+    		for i in range(len(result)):
+        		tempList.append(result[i]['label'] + '. ')
+    		tempList = list(set(tempList))
 
-    if len(tempList) != 0:
-        resultString = ''.join(tempList)
-        # resultString = trans(resultString) #한글로 결과를 전송하여 듣고싶은경우 사용
-        conn.send(resultString.encode('utf-8'))
-    else:
-        resultString = 'Please try again, there is no object in front or a recognition error.'
-        conn.send(resultString.encode('utf-8'))
+    		if len(tempList) != 0:
+        		resultString = ''.join(tempList)
+        		# resultString = trans(resultString) #한글로 결과를 전송하여 듣고싶은경우 사용
+        		conn.send(resultString.encode('utf-8'))
+    		else:
+        		resultString = 'Please try again, there is no object in front or a recognition error.'
+        		conn.send(resultString.encode('utf-8'))
     
-    print("보낸 문자 :" + resultString)
-```
+    		print("보낸 문자 :" + resultString)
+	```
 
 
 #### 텍스트 인식 [Tesseract OCR Engine]
 기본 엔진을 tesseract OCR로 하며, 이미지 속 텍스트의 인식률을 높이기 위해 전처리 과정으로 흑백필터, 노이즈 제거, AdaptiveThreshold 등을 거칩니다.
-  ##### 설치 방법
+
+##### 설치 방법
 Tesseract OCR 설치파일을 [다운로드](https://digi.bib.uni-mannheim.de/tesseract/)합니다. 
-  ##### 실행 방법
-  1) 위 경로에서 버전에 맞게 설치파일을 다운로드합니다.
-  2) 설치 시 tesseract OCR의 설치 경로를 꼭 기억해야합니다.
-  3) 필요 라이브러리 install 방법
-```
-pip install pytesseract
-pip instal pillowl
-pip install image
-```
+
+##### 실행 방법
+  * 위 경로에서 버전에 맞게 설치파일을 다운로드합니다.
+  * 설치 시 tesseract OCR의 설치 경로를 꼭 기억해야합니다.
+  * 필요 라이브러리 install 방법
+	```
+	pip install pytesseract
+	pip instal pillowl
+	pip install image
+	```
 
 ##### 실행 예시
-```
-import pytesseract
-from PIL import Image
+	```
+	import pytesseract
+	from PIL import Image
 
-										#Tesseract-OCR 설치 경로
-pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
-im = Image.open('result.png')
-text = pytesseract.image_to_string(im, lang='eng') 
-print(type(text))
-print(text)
-```
+						#Tesseract-OCR 설치 경로
+	pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
+	im = Image.open('result.png')
+	text = pytesseract.image_to_string(im, lang='eng') 
+	print(type(text))
+	print(text)
+	```
 
   
 
@@ -295,55 +306,54 @@ print(text)
 사물 인식기능을 구현하기 위해 fer2013/IMDB 데이터 셋을 사용하였으며, 케라스을 백앤드로 사용하여
   CNN 모델과 OpenCV를 사용하여 구현하였다.
 
-  ##### 설치방법
+##### 설치방법
 사물인식 설치패키지와 환경 동일
-
-  ##### 실행 방법
+	
+##### 실행 방법
   * Client / Server version
     * Code/MainServer/Relumin/darkflow/net/Server.py 파일을 이용합니다.
      emotion_detection 함수안에 numpy.ndarray 형식의 이미지를 미리로드하고 실행합니다 이미지 파일을 제대로 전달하지 않으면 동작하지 않습니다. 반환값으로는 보낸문자를 출력하며, Client에게 정보를 전송한다. 
-	##### 실행 예시
+##### 실행 예시
 	```
-def emotion_detection(img):
-    emotion_text = None
+	def emotion_detection(img):
+ 	emotion_text = None
 
-    gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    rgb_image = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    faces = detect_faces(face_detection, gray_image)
+	gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+	rgb_image = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+	faces = detect_faces(face_detection, gray_image)
     
-    for face_coordinates in faces:
+    	for face_coordinates in faces:
     
-        x1, x2, y1, y2 = apply_offsets(face_coordinates, emotion_offsets)
-        gray_face = gray_image[y1:y2, x1:x2]
-        try:
-            gray_face = cv2.resize(gray_face, (emotion_target_size))
-        except:
-            continue
+        	x1, x2, y1, y2 = apply_offsets(face_coordinates, emotion_offsets)
+        	gray_face = gray_image[y1:y2, x1:x2]
+        	try:
+            		gray_face = cv2.resize(gray_face, (emotion_target_size))
+        	except:
+            		continue
     
-        gray_face = preprocess_input(gray_face, True)
-        gray_face = np.expand_dims(gray_face, 0)
-        gray_face = np.expand_dims(gray_face, -1)
-        emotion_prediction = emotion_classifier.predict(gray_face)
-        emotion_probability = np.max(emotion_prediction)
-        emotion_label_arg = np.argmax(emotion_prediction)
-        emotion_text = emotion_labels[emotion_label_arg]
-        emotion_window.append(emotion_text)
+        	gray_face = preprocess_input(gray_face, True)
+        	gray_face = np.expand_dims(gray_face, 0)
+        	gray_face = np.expand_dims(gray_face, -1)
+        	emotion_prediction = emotion_classifier.predict(gray_face)
+        	emotion_probability = np.max(emotion_prediction)
+        	emotion_label_arg = np.argmax(emotion_prediction)
+        	emotion_text = emotion_labels[emotion_label_arg]
+        	emotion_window.append(emotion_text)
     
-        if len(emotion_window) > frame_window:
-            emotion_window.pop(0)
-        try:
-            emotion_mode = mode(emotion_window)
-        except:
-            continue
+        	if len(emotion_window) > frame_window:
+            		emotion_window.pop(0)
+        	try:
+            		emotion_mode = mode(emotion_window)
+        	except:
+            		continue
+    	if emotion_text == None:
+        	emotion_text = 'Please try again, Emotion recognition error.'
+        	conn.send(emotion_text.encode('utf-8'))
+    	else:
+        	# text = trans(text) #한글로 결과를 전송하여 듣고싶은경우 사용
+        	conn.send(emotion_text.encode('utf-8'))
     
-    if emotion_text == None:
-        emotion_text = 'Please try again, Emotion recognition error.'
-        conn.send(emotion_text.encode('utf-8'))
-    else:
-        # text = trans(text) #한글로 결과를 전송하여 듣고싶은경우 사용
-        conn.send(emotion_text.encode('utf-8'))
-    
-    print("보낸 문자 :" + emotion_text)
+    	print("보낸 문자 :" + emotion_text)
 	```
 
 
@@ -357,7 +367,7 @@ Naver Clova CSS API는 Text to Speech 기능을 하기위해 사용합니다.
 * 웹 기반의 콘솔을 통해 쉽게 사용이 가능합니다.[Naver Cloud Platform](https://www.ncloud.com/product/aiService/csr) 
 * CSS API 신청을 하게 되면 Client ID와 Client Secret ID를 받게 됩니다.
 
-  ##### 실행 예시
+##### 실행 예시
 	```
 	import os
 		import sys
@@ -373,9 +383,9 @@ Naver Clova CSS API는 Text to Speech 기능을 하기위해 사용합니다.
 		response = urllib.request.urlopen(request,data=data.encode('utf-8'))
 		rescode = response.getcode()
 		if(rescode==200):
-   		 print("TTS mp3 저장")
-	     	response_body = response.read()
-	     	with open('1111.mp3', 'wb') as f:
+   			print("TTS mp3 저장")
+	     		response_body = response.read()
+	     		with open('1111.mp3', 'wb') as f:
 	        		 f.write(response_body)
 	 	else:
    		 print("Error Code:" + rescode)
@@ -383,11 +393,6 @@ Naver Clova CSS API는 Text to Speech 기능을 하기위해 사용합니다.
   * client_id 는 제공받은 Client ID를 기입하고 client_secret 은 제공받은 Client Screte ID를 기입하여야합니다.
    위의 예시를 이용하여 TTS(Text To Speech)기능의 결과물인 ‘1111.mp3’가 생성됨을 알 수 있습니다.
 
-
-
-
-
-## 서버 운용 
 
 
 
